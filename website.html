@@ -15,32 +15,6 @@
             text-align: center;
             margin: 0;
         }
-        .logo-container {
-            width: 150px;
-            height: 150px;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg') no-repeat center;
-            background-size: contain;
-            margin-bottom: 20px;
-        }
-        .dots {
-            width: 200px;
-            height: 200px;
-            position: relative;
-        }
-        .dots::before {
-            content: "";
-            width: 100%;
-            height: 100%;
-            background: conic-gradient(
-                red, orange, yellow, green, blue, indigo, violet, red
-            );
-            border-radius: 50%;
-            filter: blur(10px);
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
         h2 {
             margin: 10px 0;
         }
@@ -62,9 +36,6 @@
     </style>
 </head>
 <body>
-    <div class="dots">
-        <div class="logo-container"></div>
-    </div>
     <h2>Forgotten password?</h2>
     <p>Verify your account information to reset your password.</p>
     <a href="#" class="button">Reset password</a>
