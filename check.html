@@ -32,7 +32,7 @@
 
     // If no key is provided in the URL, display a random emoji
     if (!keyFromURL) {
-      document.getElementById("statusMessage").textContent = `Random Emoji: ${getRandomEmoji()}`;
+      document.getElementById("statusMessage").textContent = `You found me! ${getRandomEmoji()}`;
     } else {
       // If a key is provided, validate it against the stored key
       if (storedKey === keyFromURL) {
@@ -48,7 +48,7 @@
         document.getElementById("statusMessage").innerHTML = `
           <pre>
           {
-            Status: OK
+            Status: NOT OK
             Exists: false
           }
           </pre>
