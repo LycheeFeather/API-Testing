@@ -6,21 +6,11 @@
   <title>Check Key</title>
 </head>
 <body>
-  <h1>Check Key Existence</h1>
-  <p id="statusMessage"></p>
-
   <script>
     // Function to get URL parameters
     function getQueryParams() {
       const params = new URLSearchParams(window.location.search);
       return params;
-    }
-
-    // Function to get a random emoji from a list
-    function getRandomEmoji() {
-      const emojis = ['😊', '😎', '🤩', '🥳', '😜', '😺', '🎉', '💥'];
-      const randomIndex = Math.floor(Math.random() * emojis.length);
-      return emojis[randomIndex];
     }
 
     // Get the 'key' parameter from the URL
@@ -30,31 +20,21 @@
     // Get the stored key from localStorage
     const storedKey = localStorage.getItem('generatedKey');
 
-    // If no key is provided in the URL, display a random emoji
-    if (!keyFromURL) {
-      document.getElementById("statusMessage").textContent = `You found me! ${getRandomEmoji()}`;
-    } else {
-      // If a key is provided, validate it against the stored key
+    // Prepare the response as a JSON object
+    let response = {
+      status: "OK",
+      exists: false
+    };
+
+    // If a key is provided in the URL, validate it against the stored key
+    if (keyFromURL) {
       if (storedKey === keyFromURL) {
-        document.getElementById("statusMessage").innerHTML = `
-          <pre>
-          {
-            Status: OK
-            Exists: true
-          }
-          </pre>
-        `;
-      } else {
-        document.getElementById("statusMessage").innerHTML = `
-          <pre>
-          {
-            Status: NOT OK
-            Exists: false
-          }
-          </pre>
-        `;
+        response.exists = true;
       }
     }
+
+    // Output the response as JSON
+    document.write(JSON.stringify(response));
   </script>
 </body>
 </html>
