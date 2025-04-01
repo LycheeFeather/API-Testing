@@ -6,18 +6,21 @@
   <title>Key Generator</title>
 </head>
 <body>
-  <h1>Key Generation</h1>
+  <h1>Key Generator</h1>
   <button id="generateKeyBtn">Generate Key</button>
   <p id="generatedKey"></p>
 
   <script>
+    // Function to generate a random key (16 characters)
+    function generateKey() {
+      return Math.random().toString(36).substring(2, 18);
+    }
+
+    // Handle Key Generation
     document.getElementById("generateKeyBtn").addEventListener("click", function() {
-      // Generate a random key (e.g., a 16-character string)
-      const key = Math.random().toString(36).substring(2, 18); 
-      // Save it in localStorage
-      localStorage.setItem('generatedKey', key);
-      // Display the generated key
-      document.getElementById("generatedKey").textContent = `Generated Key: ${key}`;
+      const newKey = generateKey(); // Generate a new key
+      localStorage.setItem('generatedKey', newKey); // Save it in localStorage
+      document.getElementById("generatedKey").textContent = `Generated Key: ${newKey}`; // Display the key
     });
   </script>
 </body>
