@@ -25,15 +25,17 @@
 
     // Get the 'key' parameter from the URL
     const urlParams = getQueryParams();
-    const key = urlParams.get('key'); // Get the 'key' parameter value
+    const keyFromURL = urlParams.get('key'); // Get the 'key' parameter value
 
-    // Check if the key is stored in localStorage
+    // Get the stored key from localStorage
     const storedKey = localStorage.getItem('generatedKey');
 
-    // If there's a key in the URL and it matches the stored key
-    if (key) {
-      if (storedKey === key) {
-        // Display the success message
+    // If no key is provided in the URL, display a random emoji
+    if (!keyFromURL) {
+      document.getElementById("statusMessage").textContent = `Random Emoji: ${getRandomEmoji()}`;
+    } else {
+      // If a key is provided, validate it against the stored key
+      if (storedKey === keyFromURL) {
         document.getElementById("statusMessage").innerHTML = `
           <pre>
           {
@@ -43,7 +45,6 @@
           </pre>
         `;
       } else {
-        // If the key does not match
         document.getElementById("statusMessage").innerHTML = `
           <pre>
           {
@@ -53,9 +54,6 @@
           </pre>
         `;
       }
-    } else {
-      // If no key is provided in the URL, display a random emoji
-      document.getElementById("statusMessage").textContent = `Random Emoji: ${getRandomEmoji()}`;
     }
   </script>
 </body>
