@@ -10,23 +10,52 @@
   <p id="statusMessage"></p>
 
   <script>
-    // Retrieve the stored key from localStorage
+    // Function to get URL parameters
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return params;
+    }
+
+    // Function to get a random emoji from a list
+    function getRandomEmoji() {
+      const emojis = ['😊', '😎', '🤩', '🥳', '😜', '😺', '🎉', '💥'];
+      const randomIndex = Math.floor(Math.random() * emojis.length);
+      return emojis[randomIndex];
+    }
+
+    // Get the 'key' parameter from the URL
+    const urlParams = getQueryParams();
+    const key = urlParams.get('key'); // Get the 'key' parameter value
+
+    // Check if the key is stored in localStorage
     const storedKey = localStorage.getItem('generatedKey');
 
-    // Check if the key exists
-    if (storedKey) {
-      // Display the raw HTML response if the key exists
-      document.getElementById("statusMessage").innerHTML = `
-        <pre>
-        {
-          Status: OK
-          Exists: true
-        }
-        </pre>
-      `;
+    // If there's a key in the URL and it matches the stored key
+    if (key) {
+      if (storedKey === key) {
+        // Display the success message
+        document.getElementById("statusMessage").innerHTML = `
+          <pre>
+          {
+            Status: OK
+            Exists: true
+          }
+          </pre>
+        `;
+      } else {
+        // If the key does not match
+        document.getElementById("statusMessage").innerHTML = `
+          <pre>
+          {
+            Status: OK
+            Exists: false
+          }
+          </pre>
+        `;
+      }
     } else {
-      // If no key is found, show a message
-      document.getElementById("statusMessage").textContent = "Key does not exist.";
+      // If no key is provided in the URL, display a random emoji
+      document.getElementById("statusMessage").textContent = `Random Emoji: ${getRandomEmoji()}`;
     }
   </script>
 </body>
