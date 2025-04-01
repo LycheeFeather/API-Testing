@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check Key</title>
+</head>
+<body>
+  <h1>Check Key Existence</h1>
+  <p id="statusMessage"></p>
+
+  <script>
+    // Retrieve the stored key from localStorage
+    const storedKey = localStorage.getItem('generatedKey');
+
+    // Check if the key exists
+    if (storedKey) {
+      // Display the raw HTML response if the key exists
+      document.getElementById("statusMessage").innerHTML = `
+        <pre>
+        {
+          Status: OK
+          Exists: true
+        }
+        </pre>
+      `;
+    } else {
+      // If no key is found, show a message
+      document.getElementById("statusMessage").textContent = "Key does not exist.";
+    }
+  </script>
+</body>
+</html>
