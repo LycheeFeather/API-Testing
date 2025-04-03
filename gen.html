@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generator</title>
+  <title>Key Generator</title>
 </head>
 <body>
-  <h1>Get Key</h1>
-  <p id="keyDisplay"></p>
-  <button onclick="generateKey()">Generate</button>
+  <h1>Generated Key</h1>
+  <p id="keyDisplay">Click the button to generate a key.</p>
+  <button onclick="generateKey()">Generate New Key</button>
 
   <script>
     function generateKey() {
@@ -17,13 +17,9 @@
       for (let i = 0; i < 32; i++) {
         key += chars.charAt(Math.floor(Math.random() * chars.length));
       }
-
       localStorage.setItem('generatedKey', key);
-
       document.getElementById("keyDisplay").textContent = `Your Key: ${key}`;
     }
-
-    generateKey();
   </script>
 </body>
 </html>
