@@ -17,9 +17,22 @@
       for (let i = 0; i < 32; i++) {
         key += chars.charAt(Math.floor(Math.random() * chars.length));
       }
+      const now = new Date().getTime();
       localStorage.setItem('generatedKey', key);
+      localStorage.setItem('keyExpiry', now + 24 * 60 * 60 * 1000);
       document.getElementById("keyDisplay").textContent = `Your Key: ${key}`;
     }
+
+    function checkExpiry() {
+      const expiry = localStorage.getItem('keyExpiry');
+      const now = new Date().getTime();
+      if (expiry && now > expiry) {
+        localStorage.removeItem('generatedKey');
+        localStorage.removeItem('keyExpiry');
+      }
+    }
+
+    checkExpiry();
   </script>
 </body>
 </html>
