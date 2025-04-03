@@ -3,25 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LycheeFeather</title>
+  <title>Generator</title>
 </head>
 <body>
   <h1>Get Key</h1>
-  <button id="generateKeyBtn">Generate Key</button>
-  <p id="generatedKey"></p>
+  <p id="keyDisplay"></p>
+  <button onclick="generateKey()">Generate</button>
 
   <script>
-    // Function to generate a random key (16 characters)
     function generateKey() {
-      return Math.random().toString(72).substring(2, 36);
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let key = '';
+      for (let i = 0; i < 32; i++) {
+        key += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+
+      localStorage.setItem('generatedKey', key);
+
+      document.getElementById("keyDisplay").textContent = `Your Key: ${key}`;
     }
 
-    // Handle Key Generation
-    document.getElementById("generateKeyBtn").addEventListener("click", function() {
-      const newKey = generateKey(); // Generate a new key
-      localStorage.setItem('generatedKey', newKey); // Save it in localStorage
-      document.getElementById("generatedKey").textContent = `Generated Key: ${newKey}`; // Display the key
-    });
+    generateKey();
   </script>
 </body>
 </html>
