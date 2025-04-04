@@ -7,35 +7,26 @@
 </head>
 <body>
   <script>
-    (function(){
-        function _0xabc1(_0x1c5d8b, _0x42e72a) {
-            const _0x5e47b4 = _0x5e47();
-            return _0xabc1 = function (_0xabc1a1, _0x372f91) {
-                _0xabc1a1 = _0xabc1a1 - 0x1a1;
-                let _0x50f8f1 = _0x5e47b4[_0xabc1a1];
-                return _0x50f8f1;
-            }, _0xabc1(_0x1c5d8b, _0x42e72a);
-        }
-        function _0x5e47() {
-            const _0x2f47b4 = ['search', 'get', 'stringify', 'write', 'generatedKey', 'OK', 'true', 'userAgent', 'includes', 'curl', 'getItem', 'exists'];
-            return _0x5e47 = function () {
-                return _0x2f47b4;
-            }, _0x5e47();
-        }
-        (function() {
-            let _0x5f837e = new URLSearchParams(window[_0xabc1(0x1a3)]),
-                _0x10e879 = _0x5f837e[_0xabc1(0x1a4)]('key'),
-                _0x2a36e4 = _0x5f837e[_0xabc1(0x1a4)]('dev') === _0xabc1(0x1ae),
-                _0x3d90af = localStorage[_0xabc1(0x1a7)](_0xabc1(0x1a9));
 
-            if (_0x2a36e4) {
-                navigator[_0xabc1(0x1af)][_0xabc1(0x1b0)](_0xabc1(0x1b1)) && document[_0xabc1(0x1a6)]('print("On")');
-            } else {
-                let _0x2299df = { [_0xabc1(0x1a8)]: _0xabc1(0x1a9), [_0xabc1(0x1b2)]: false };
-                _0x10e879 && _0x3d90af === _0x10e879 && (_0x2299df[_0xabc1(0x1b2)] = true), document[_0xabc1(0x1a6)](JSON[_0xabc1(0x1a5)](_0x2299df));
-            }
-        })();
-    })();
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return params;
+    }
+
+    const urlParams = getQueryParams();
+    const keyFromURL = urlParams.get('key');
+const storedKey = localStorage.getItem('generatedKey');
+let response = {
+      status: "OK",
+      exists: false
+    };
+ if (keyFromURL) {
+      if (storedKey === keyFromURL) {
+        response.exists = true;
+      }
+    }
+
+    document.write(JSON.stringify(response));
   </script>
 </body>
 </html>
